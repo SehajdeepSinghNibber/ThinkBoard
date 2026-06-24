@@ -5,6 +5,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/api/notes",router);
+app.use("/api/v1/posts",router);
 
 export default app;
