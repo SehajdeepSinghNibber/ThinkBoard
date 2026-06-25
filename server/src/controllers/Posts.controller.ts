@@ -36,9 +36,23 @@ export const createPost = async (req: Request, res: Response) => {
 export const updatePost = async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  res.status(200).json({
-    message: `Post ${id} updated successfully`,
-  });
+  try {
+    const { title, content } = req.body;
+  
+    await Post.findByIdAndUpdate(id,
+      {
+        title,
+        content
+      }
+    )
+  
+    res.status(200).json({
+      message: `Post ${id} updated successfully`,
+    });
+  } catch (error) {
+    console.log("error is:", error);
+    res.status(500).json({message: "Internal Server Error"});
+  }
 };
 
 export const deletePost = async (req: Request, res: Response) => {
