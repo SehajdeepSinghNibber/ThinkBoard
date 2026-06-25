@@ -3,7 +3,7 @@ import Post from "../models/Post.model";
 
 export const getPosts = async (req: Request, res: Response) => {
   try {
-    const posts = await Post.find()
+    const posts = await Post.find().sort({createdAt:-1}); //newest first
      
     res.status(200).json(posts);
   } catch (error) {
