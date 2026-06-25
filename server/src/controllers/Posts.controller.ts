@@ -82,3 +82,21 @@ export const deletePost = async (req: Request, res: Response) => {
     
   }
 };
+
+export const getPostById = async (req: Request, res: Response) => {
+ 
+  const { id } = req.params;
+ 
+  try {
+    const post = await Post.findById(id)
+     
+    res.status(200).json(post);
+
+    if(!post){
+      return res.json({message:"Post not Found"})
+    }
+  } catch (error) {
+    console.log("error is:", error);
+    res.status(500).json({message: "Internal Server Error"});
+  }
+};
