@@ -13,7 +13,7 @@ const redis = new Redis({
 // createing a rate limit of 100 req per 60 sec
 const ratelimit = new Ratelimit({
   redis,
-  limiter: Ratelimit.slidingWindow(100, "60 s"),
+  limiter: Ratelimit.slidingWindow(10, "20 s"),
 });
 
 export { redis };
